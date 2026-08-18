@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors — use as bg-ink, text-signal, etc. */
+  --color-ink: #0b0b0c;
+  --color-panel: #17171a;
+  --color-bone: #f2f0ea;
+  --color-signal: #e8792e;
+
+  /* Fonts — use as font-display, font-body, font-mono */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Hero pan/zoom keyframes — use as animate-hero-pan */
+  --animate-hero-pan: hero-pan 22s ease-in-out infinite alternate;
+
+  /* Sponsor logo marquee — use as animate-marquee */
+  --animate-marquee: marquee 28s linear infinite;
+}
+
+@keyframes hero-pan {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1.5%, -1%);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* --marquee-distance is set inline per-component based on how many
+       times the logo list is duplicated, so this stays seamless whether
+       you have 3 sponsors or 30. Falls back to -50% (assumes 2 copies)
+       if nothing overrides it. */
+    transform: translateX(var(--marquee-distance, -50%));
+  }
+}
+
+body {
+  @apply bg-ink text-bone font-body;
+}
+
+/* Respect people who've asked their OS to reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-pan,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
