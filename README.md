@@ -1,4 +1,4 @@
-#npm run dev to start
+npm run dev to start
 
 
 # React + Vite
