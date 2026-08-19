@@ -44,77 +44,88 @@ export default function Aircraft() {
 
   return (
     <>
-      <section className="relative h-screen w-full overflow-hidden">
-        <img
-          src="/images/front_view_icarus.jpg"
-          alt="Front view of the Icarus aircraft"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-
-        <div className="relative z-10 flex h-full flex-col px-8 pt-32 md:px-12">
+      <section className="relative w-full overflow-hidden bg-[#c4c4c7] md:h-screen">
+        <div className="relative z-10 px-8 pt-32 md:absolute md:inset-0 md:flex md:h-full md:flex-col md:px-12">
           <h1 className="max-w-2xl font-display text-5xl font-bold uppercase leading-[1.05] text-black md:text-7xl">
             Icarus
           </h1>
         </div>
 
-        {/* Hotspot callouts — the marker sits on the airframe feature;
-            hovering it draws a connecting line out to the label. */}
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-0 z-10 h-full w-full"
-        >
+        {/* On mobile this sizes to the photo's natural (uncropped)
+            aspect ratio so the whole airframe stays in frame — the
+            hotspot percentages then line up correctly either way, since
+            they're positioned relative to this box, not the section. On
+            desktop it's absolutely filled behind the title, cropped via
+            object-cover, same as before. */}
+        <div className="relative mt-8 md:absolute md:inset-0 md:mt-0">
+          <img
+            src="/images/front_view_icarus.jpg"
+            alt="Front view of the Icarus aircraft"
+            className="block h-auto w-full md:h-full md:object-cover"
+          />
+
+          {/* Hotspot callouts — the marker sits on the airframe feature;
+              hovering it draws a connecting line out to the label. */}
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+          >
+            {HOTSPOTS.map(
+              (spot, i) =>
+                hovered === i && (
+                  <line
+                    key={spot.label}
+                    x1={spot.point.x}
+                    y1={spot.point.y}
+                    x2={spot.anchor.x}
+                    y2={spot.anchor.y}
+                    stroke="black"
+                    strokeWidth="1.5"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                )
+            )}
+          </svg>
+
+          {HOTSPOTS.map((spot, i) => (
+            <button
+              key={spot.label}
+              type="button"
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(i)}
+              onBlur={() => setHovered(null)}
+              aria-label={spot.label}
+              style={{ left: `${spot.point.x}%`, top: `${spot.point.y}%` }}
+              className={`absolute z-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2 border-4 transition-colors ${
+                hovered === i
+                  ? "border-signal"
+                  : "border-black/70 hover:border-black"
+              }`}
+            />
+          ))}
+
           {HOTSPOTS.map(
             (spot, i) =>
               hovered === i && (
-                <line
+                <p
                   key={spot.label}
-                  x1={spot.point.x}
-                  y1={spot.point.y}
-                  x2={spot.anchor.x}
-                  y2={spot.anchor.y}
-                  stroke="black"
-                  strokeWidth="1.5"
-                  vectorEffect="non-scaling-stroke"
-                />
+                  style={{
+                    left: `${spot.anchor.x}%`,
+                    top: `${spot.anchor.y}%`,
+                  }}
+                  className={`absolute z-10 max-w-[12rem] -translate-y-1/2 font-mono text-xs font-bold uppercase tracking-widest text-black ${
+                    spot.align === "right"
+                      ? "-translate-x-full text-right"
+                      : ""
+                  }`}
+                >
+                  {spot.label}
+                </p>
               )
           )}
-        </svg>
-
-        {HOTSPOTS.map((spot, i) => (
-          <button
-            key={spot.label}
-            type="button"
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            onFocus={() => setHovered(i)}
-            onBlur={() => setHovered(null)}
-            aria-label={spot.label}
-            style={{ left: `${spot.point.x}%`, top: `${spot.point.y}%` }}
-            className={`absolute z-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2 border-4 transition-colors ${
-              hovered === i
-                ? "border-signal"
-                : "border-black/70 hover:border-black"
-            }`}
-          />
-        ))}
-
-        {HOTSPOTS.map(
-          (spot, i) =>
-            hovered === i && (
-              <p
-                key={spot.label}
-                style={{ left: `${spot.anchor.x}%`, top: `${spot.anchor.y}%` }}
-                className={`absolute z-10 max-w-[12rem] -translate-y-1/2 font-mono text-xs font-bold uppercase tracking-widest text-black ${
-                  spot.align === "right"
-                    ? "-translate-x-full text-right"
-                    : ""
-                }`}
-              >
-                {spot.label}
-              </p>
-            )
-        )}
+        </div>
       </section>
 
       <section className="bg-ink px-8 pt-16 pb-24 text-bone md:px-12">
