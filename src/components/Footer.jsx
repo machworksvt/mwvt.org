@@ -1,21 +1,21 @@
+import { Link } from "react-router-dom";
+
 // Replace these placeholder hrefs with your real links/pages.
 const FOOTER_COLUMNS = [
   {
     label: "Team",
     links: [
-      { label: "About Us", href: "#about" },
-      { label: "Our Team", href: "#team" },
-      { label: "Our Aircraft", href: "#aircraft" },
-      { label: "Our Lab", href: "#lab" },
+      { label: "About Us", to: "/about" },
+      { label: "Our Team", to: "/team" },
+      { label: "Our Aircraft", to: "/aircraft" },
+      { label: "Our Lab", to: "/lab" },
     ],
   },
   {
     label: "Get Involved",
     links: [
-      { label: "Join Us", href: "#join" },
-      { label: "Support Us", href: "#support" },
-      { label: "Our Sponsors", href: "#sponsors" },
-      { label: "Contact Us", href: "#contact" },
+      { label: "Sponsor Us", to: "/sponsors" },
+      { label: "Contact Us", to: "/contact" },
     ],
   },
   {
@@ -29,10 +29,28 @@ const FOOTER_COLUMNS = [
   },
 ];
 
-const LEGAL_LINKS = [
-  { label: "Virginia Tech", href: "https://vt.edu" },
-  { label: "Student Org Directory", href: "#" },
-];
+const LEGAL_LINKS = [{ label: "Virginia Tech", href: "https://vt.edu" }];
+
+function FooterLink({ link }) {
+  const className = "text-sm text-bone transition-colors hover:text-signal";
+  if (link.to) {
+    return (
+      <Link to={link.to} className={className}>
+        {link.label}
+      </Link>
+    );
+  }
+  return (
+    <a
+      href={link.href}
+      target={link.href.startsWith("http") ? "_blank" : undefined}
+      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+      className={className}
+    >
+      {link.label}
+    </a>
+  );
+}
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -42,12 +60,13 @@ export default function Footer() {
       <div className="grid grid-cols-2 gap-y-12 md:grid-cols-5 md:gap-x-8">
         {/* Brand block */}
         <div className="col-span-2 md:col-span-2">
-          <span className="font-display text-2xl font-bold tracking-tight text-signal">
-            MachWorks
-          </span>
+          <img
+            src="/images/logo-full.png"
+            alt="MachWorks at Virginia Tech"
+            className="h-24 w-auto md:h-30"
+          />
           <p className="mt-3 max-w-xs text-sm text-bone/60">
-            Student-designed, student-built autonomous aircraft — Virginia
-            Tech's aerospace engineering team.
+            
           </p>
         </div>
 
@@ -60,14 +79,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="text-sm text-bone transition-colors hover:text-signal"
-                  >
-                    {link.label}
-                  </a>
+                  <FooterLink link={link} />
                 </li>
               ))}
             </ul>
@@ -105,11 +117,18 @@ export default function Footer() {
             Contact
           </p>
           <a
-            href="mailto:contact@mwvt.org"
+            href="mailto:machworksvt@gmail.com"
             className="mt-3 block text-sm text-bone transition-colors hover:text-signal"
           >
-            contact@mwvt.org
+            machworksvt@gmail.com
           </a>
+          <address className="mt-4 not-italic text-sm text-bone/60">
+            Advanced Engineering Design Lab
+            <br />
+            501 Industrial Park Road
+            <br />
+            Blacksburg, VA 24060
+          </address>
         </div>
       </div>
     </footer>

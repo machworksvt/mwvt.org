@@ -9,7 +9,7 @@ export default function RedefiningImpossible() {
         alt="The Icarus aircraft banking against a clear sky over desert terrain"
         initial={{ opacity: 0, scale: 1.06 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 1.2 }}
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "50% 42%" }}
@@ -23,17 +23,16 @@ export default function RedefiningImpossible() {
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6 }}
           className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-signal"
         >
-          Our Aircraft
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="max-w-4xl font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-6xl"
         >
@@ -43,13 +42,11 @@ export default function RedefiningImpossible() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 1.1, delay: 0.25 }}
           className="mt-6 max-w-xl text-lg text-bone/80"
         >
-          MachWorks designs, builds, and flies autonomous fixed-wing aircraft
-          from the ground up — airframe, avionics, and every line of code in
-          between.
+          MachWorks aims to become the first undergraduate team to design, build, and fly a fully autonomous, supersonic aircraft powered entirely by air-breathing engines. Through disciplined engineering and bold innovation, we are bringing next-generation flight to reality.
         </motion.p>
       </div>
     </section>
