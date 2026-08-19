@@ -1,9 +1,33 @@
+import { useRef } from "react";
+
 const ADDRESS = "501 Industrial Park Road, Blacksburg, VA 24060";
 const MAPS_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
   ADDRESS
 )}&output=embed`;
 
+// Same rendered size as the original 3-photo row (max-w-6xl / 3 columns).
+const PHOTO_WIDTH = 380;
+const PHOTO_GAP = 8;
+
+const LAB_PHOTOS = [
+  { src: "/images/aedl.jpg", alt: "The Aerospace Engineering Design Lab building" },
+  { src: "/images/aedl_outside.jpg", alt: "Outside the Aerospace Engineering Design Lab" },
+  { src: "/images/aedl_bay.jpg", alt: "Inside the Aerospace Engineering Design Lab bay" },
+  { src: "/images/aedl_wrap.jpg", alt: "The Aerospace Engineering Design Lab wrap" },
+  { src: "/images/aedl_test.jpg", alt: "Testing at the Aerospace Engineering Design Lab" },
+  { src: "/images/aedl_funny.jpg", alt: "The team at the Aerospace Engineering Design Lab" },
+];
+
 export default function Lab() {
+  const scrollerRef = useRef(null);
+
+  const scrollByOne = (direction) => {
+    scrollerRef.current?.scrollBy({
+      left: direction * (PHOTO_WIDTH + PHOTO_GAP),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       {/* Dark header — headline, address, CTA */}
@@ -23,14 +47,40 @@ export default function Lab() {
         </a>
       </section>
 
-      {/* Orange band with the lab building photo, edge-to-edge like the
-          old site. */}
-      <section className="bg-signal py-10">
-        <img
-          src="/images/aedl.jpg"
-          alt="The Aerospace Engineering Design Lab building"
-          className="mx-auto aspect-video w-full max-w-6xl object-cover"
-        />
+      {/* Orange band with lab photos — a horizontally scrollable strip,
+          same photo size as before, with edge buttons to page through. */}
+      <section className="relative bg-signal py-10">
+        <button
+          type="button"
+          onClick={() => scrollByOne(-1)}
+          aria-label="Scroll photos left"
+          className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/30 bg-ink/80 text-bone transition-colors hover:border-ink hover:bg-ink md:left-4"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollByOne(1)}
+          aria-label="Scroll photos right"
+          className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/30 bg-ink/80 text-bone transition-colors hover:border-ink hover:bg-ink md:right-4"
+        >
+          ›
+        </button>
+
+        <div
+          ref={scrollerRef}
+          className="hide-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth px-14"
+        >
+          {LAB_PHOTOS.map((photo) => (
+            <img
+              key={photo.src}
+              src={photo.src}
+              alt={photo.alt}
+              style={{ width: PHOTO_WIDTH }}
+              className="aspect-video shrink-0 snap-start object-cover"
+            />
+          ))}
+        </div>
       </section>
 
       {/* Map */}
