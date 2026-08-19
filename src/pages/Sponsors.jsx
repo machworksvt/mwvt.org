@@ -10,10 +10,7 @@ export default function Sponsors() {
             Partner with MachWorks
           </h1>
           <p className="mt-6 max-w-2xl text-bone/70">
-            Help take collegiate aerospace to new flight regimes. Your
-            sponsorship provides the critical tools, raw materials, and
-            testing equipment that allow our students to keep doing what
-            they love.
+           Help take collegiate aerospace to new flight regimes. Your sponsorship provides the critical tools, raw materials, and testing equipment our students need to bring ambitious flight concepts into reality.
           </p>
           <a
             href="mailto:machworksvt@gmail.com"
@@ -35,7 +32,7 @@ export default function Sponsors() {
         </h2>
         <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 marker:text-signal">
           <li className="text-bone/70">
-            Direct recruitment pipelines and networking access to top
+            Direct recruitment pipelines and networking access to
             engineering talent in aerodynamics, embedded autonomy,
             structures, and propulsion.
           </li>

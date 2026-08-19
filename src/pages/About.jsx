@@ -54,34 +54,50 @@ export default function About() {
 
       <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2">
         {HIGHLIGHTS.map((item) => (
-          <div
-            key={item.title}
-            className="group relative aspect-[4/3] overflow-hidden rounded-md"
-          >
-            <img
-              src={item.image}
-              alt={item.alt}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              style={{ objectPosition: item.position ?? "50% 50%" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
+          <div key={item.title}>
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-md">
+              <img
+                src={item.image}
+                alt={item.alt}
+                className="h-full w-full object-cover transition-transform duration-500 sm:group-hover:scale-105"
+                style={{ objectPosition: item.position ?? "50% 50%" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
 
-            <div className="absolute inset-0 flex flex-col justify-end p-6">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                {item.title}
-              </h2>
-              <div className="mt-3 max-w-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="text-sm text-bone/80">{item.description}</p>
-                {item.bullets && (
-                  <ul className="mt-3 list-disc space-y-1.5 pl-4 marker:text-signal">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="text-sm text-bone/80">
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div className="absolute inset-0 flex flex-col justify-end p-6">
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
+                  {item.title}
+                </h2>
+                {/* Hover reveal — desktop only, since there's no hover on
+                    touch devices. Mobile gets the static block below
+                    instead. */}
+                <div className="hidden max-w-sm sm:block sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:transition-all sm:duration-300 sm:group-hover:mt-3 sm:group-hover:max-h-96 sm:group-hover:opacity-100">
+                  <p className="text-sm text-bone/80">{item.description}</p>
+                  {item.bullets && (
+                    <ul className="mt-3 list-disc space-y-1.5 pl-4 marker:text-signal">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet} className="text-sm text-bone/80">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
+            </div>
+
+            {/* Static description — mobile only. */}
+            <div className="mt-4 sm:hidden">
+              <p className="text-sm text-bone/70">{item.description}</p>
+              {item.bullets && (
+                <ul className="mt-3 list-disc space-y-1.5 pl-4 marker:text-signal">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet} className="text-sm text-bone/70">
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         ))}

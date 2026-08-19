@@ -80,46 +80,63 @@ export default function Subteams() {
 
       <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2">
         {SUBTEAMS.map((subteam) => (
-          <div
-            key={subteam.title}
-            className="group relative aspect-[4/3] overflow-hidden rounded-md bg-panel"
-          >
-            {subteam.photo?.src ? (
-              <img
-                src={subteam.photo.src}
-                alt={subteam.photo.alt ?? `${subteam.title} subteam photo`}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center border border-dashed border-bone/20 font-mono text-xs uppercase tracking-widest text-bone/30">
-                Add photo
+          <div key={subteam.title}>
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-md bg-panel">
+              {subteam.photo?.src ? (
+                <img
+                  src={subteam.photo.src}
+                  alt={subteam.photo.alt ?? `${subteam.title} subteam photo`}
+                  className="h-full w-full object-cover transition-transform duration-500 sm:group-hover:scale-105"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center border border-dashed border-bone/20 font-mono text-xs uppercase tracking-widest text-bone/30">
+                  Add photo
+                </div>
+              )}
+
+              <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/40 to-ink/10" />
+
+              {/* Darkens on hover so the enlarged description stays legible
+                  over the photo — desktop only, since touch devices have
+                  no hover. Mobile gets the static block below instead. */}
+              <div className="absolute inset-0 hidden bg-ink/85 sm:block sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100" />
+
+              <div className="absolute inset-x-0 top-0 p-6">
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
+                  {subteam.title}
+                </h2>
               </div>
-            )}
 
-            <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/40 to-ink/10" />
-
-            {/* Darkens on hover so the enlarged description stays legible
-                over the photo. */}
-            <div className="absolute inset-0 bg-ink/85 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-            <div className="absolute inset-x-0 top-0 p-6">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                {subteam.title}
-              </h2>
+              <div className="absolute inset-0 hidden flex-col items-center justify-center gap-4 p-8 text-center sm:flex sm:opacity-0 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-100">
+                {subteam.description && (
+                  <p className="text-base font-medium leading-snug text-bone sm:text-lg md:text-xl">
+                    {subteam.description}
+                  </p>
+                )}
+                {subteam.githubUrl && (
+                  <a
+                    href={subteam.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-mono text-xs uppercase tracking-widest text-signal transition-colors hover:text-bone"
+                  >
+                    Visit our GitHub →
+                  </a>
+                )}
+              </div>
             </div>
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {/* Static description — mobile only. */}
+            <div className="mt-4 sm:hidden">
               {subteam.description && (
-                <p className="text-base font-medium leading-snug text-bone sm:text-lg md:text-xl">
-                  {subteam.description}
-                </p>
+                <p className="text-sm text-bone/70">{subteam.description}</p>
               )}
               {subteam.githubUrl && (
                 <a
                   href={subteam.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-xs uppercase tracking-widest text-signal transition-colors hover:text-bone"
+                  className="mt-3 inline-block font-mono text-xs uppercase tracking-widest text-signal transition-colors hover:text-bone"
                 >
                   Visit our GitHub →
                 </a>

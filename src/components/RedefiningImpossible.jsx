@@ -36,7 +36,7 @@ export default function RedefiningImpossible() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="max-w-4xl font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-6xl"
         >
-          Redefining Impossible
+          Beyond the Horizon
         </motion.h2>
 
         <motion.p
