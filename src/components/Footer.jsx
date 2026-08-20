@@ -123,7 +123,7 @@ export default function Footer() {
             machworksvt@gmail.com
           </a>
           <address className="mt-4 not-italic text-sm text-bone/60">
-            Advanced Engineering Design Lab
+            Aerospace Engineering Design Lab
             <br />
             501 Industrial Park Road
             <br />

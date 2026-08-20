@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-// 1. Sign up at formspree.io and create a form pointed at
-//    machworksvt@gmail.com.
-// 2. Formspree will give you a URL like https://formspree.io/f/xxxxxxxx —
-//    drop that ID in below.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnpallyq";
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/machworks/" },
