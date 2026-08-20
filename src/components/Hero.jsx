@@ -22,7 +22,6 @@ export default function Hero() {
         muted
         loop
         playsInline
-        poster="/hero-poster.jpg"
         className="absolute inset-0 h-full w-full origin-center object-cover animate-hero-pan"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
@@ -95,7 +94,7 @@ export default function Hero() {
               Fall 2026 Applications Open Now!
             </p>
             <a
-              href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=hGiVYK0Q-kCGPU8yweOjeiKDa5U5hFxPn_IfKIdagcVUMFFFMjhXS05QR1NSTjBaWTNWVzdUTDBQWC4u&route=shorturl"
+              href="https://forms.cloud.microsoft/r/Xs4bHbvrrV"
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-block rounded-md bg-signal px-6 py-3 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:bg-signal/90"

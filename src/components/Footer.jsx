@@ -22,9 +22,9 @@ const FOOTER_COLUMNS = [
     label: "Social",
     links: [
       { label: "Instagram", href: "https://instagram.com/machworksvt" },
-      { label: "LinkedIn", href: "https://linkedin.com/company/machworksvt" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/machworks/" },
       { label: "GitHub", href: "https://github.com/machworksvt" },
-      { label: "YouTube", href: "https://youtube.com/@machworksvt" },
+      { label: "YouTube", href: "https://www.youtube.com/@MachWorks" },
     ],
   },
 ];

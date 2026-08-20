@@ -7,9 +7,9 @@ import { useState } from "react";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 const SOCIAL_LINKS = [
-  { label: "LinkedIn", href: "https://linkedin.com/company/machworksvt" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/machworks/" },
   { label: "GitHub", href: "https://github.com/machworksvt" },
-  { label: "YouTube", href: "https://youtube.com/@machworksvt" },
+  { label: "YouTube", href: "https://www.youtube.com/@MachWorks" },
 ];
 
 const FIELD_CLASS =
