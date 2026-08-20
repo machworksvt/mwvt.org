@@ -26,6 +26,7 @@ const HOTSPOTS = [
     point: { x: 38, y: 80 }, // nose
     anchor: { x: 14, y: 90 },
     align: "left",
+    labelOffset: 10, // nudge text down slightly so the line doesn't cut through it
   },
 ];
 
@@ -114,11 +115,12 @@ export default function Aircraft() {
                   style={{
                     left: `${spot.anchor.x}%`,
                     top: `${spot.anchor.y}%`,
+                    transform: `translate(${
+                      spot.align === "right" ? "-100%" : "0"
+                    }, calc(-50% + ${spot.labelOffset ?? 0}px))`,
                   }}
-                  className={`absolute z-10 max-w-[12rem] -translate-y-1/2 font-mono text-xs font-bold uppercase tracking-widest text-black ${
-                    spot.align === "right"
-                      ? "-translate-x-full text-right"
-                      : ""
+                  className={`absolute z-10 max-w-[12rem] font-mono text-xs font-bold uppercase tracking-widest text-black ${
+                    spot.align === "right" ? "text-right" : ""
                   }`}
                 >
                   {spot.label}
