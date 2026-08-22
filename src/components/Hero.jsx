@@ -2,8 +2,22 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+const JOIN_MODAL_SEEN_KEY = "mwvt-join-modal-seen";
+
 export default function Hero() {
   const [showJoinModal, setShowJoinModal] = useState(false);
+
+  // Auto-open on a visitor's first page load this session — recruitment
+  // season, so we want it hard to miss. sessionStorage means it won't
+  // nag on every click back to the homepage, but resets each new visit.
+  useEffect(() => {
+    if (sessionStorage.getItem(JOIN_MODAL_SEEN_KEY)) return;
+    const timer = setTimeout(() => {
+      setShowJoinModal(true);
+      sessionStorage.setItem(JOIN_MODAL_SEEN_KEY, "true");
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!showJoinModal) return;
