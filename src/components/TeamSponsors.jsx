@@ -11,6 +11,7 @@ const SPONSORS = [
   { name: "Sponsor Five", file: "sponsor-5.png" },
   { name: "Sponsor Six", file: "sponsor-6.png" },
   { name: "Sponsor Seven", file: "sponsor-7.png" },
+  { name: "Sponsor Eight", file: "sponsor-8.png" },
 ];
 
 // How many times to repeat the logo list in the DOM. More copies = more
