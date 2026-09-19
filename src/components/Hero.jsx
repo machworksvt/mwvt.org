@@ -2,22 +2,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const JOIN_MODAL_SEEN_KEY = "mwvt-join-modal-seen";
-
 export default function Hero() {
   const [showJoinModal, setShowJoinModal] = useState(false);
-
-  // Auto-open on a visitor's first page load this session — recruitment
-  // season, so we want it hard to miss. sessionStorage means it won't
-  // nag on every click back to the homepage, but resets each new visit.
-  useEffect(() => {
-    if (sessionStorage.getItem(JOIN_MODAL_SEEN_KEY)) return;
-    const timer = setTimeout(() => {
-      setShowJoinModal(true);
-      sessionStorage.setItem(JOIN_MODAL_SEEN_KEY, "true");
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     if (!showJoinModal) return;
@@ -105,16 +91,11 @@ export default function Hero() {
               ✕
             </button>
             <p className="font-display text-xl font-bold uppercase tracking-tight text-bone">
-              Fall 2026 Applications Open Now!
+              Applications for Fall 2026 have now closed
             </p>
-            <a
-              href="https://forms.cloud.microsoft/r/Xs4bHbvrrV"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-block rounded-md bg-signal px-6 py-3 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:bg-signal/90"
-            >
-              Apply Here
-            </a>
+            <p className="mt-4 text-sm text-bone/70">
+              Check back later to see open positions.
+            </p>
           </div>
         </div>
       )}
